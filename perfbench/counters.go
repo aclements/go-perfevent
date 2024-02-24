@@ -6,6 +6,8 @@
 package perfbench
 
 import (
+	"fmt"
+	"sync"
 	"testing"
 
 	"github.com/aclements/go-perfevent/events"
@@ -32,7 +34,18 @@ type Counters struct {
 	counters []*perf.Counter
 }
 
+var printUnits = sync.OnceFunc(func() {
+	// Print unit metadata.
+	for _, event := range defaultEvents {
+		// Currently all events are better=lower.
+		fmt.Printf("Unit %s better=lower\n", event.String())
+	}
+	fmt.Printf("\n")
+})
+
 func Open(b *testing.B) *Counters {
+	printUnits()
+
 	cs := Counters{b: b, events: defaultEvents, counters: make([]*perf.Counter, len(defaultEvents))}
 
 	for i, event := range cs.events {
