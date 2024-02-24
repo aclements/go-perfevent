@@ -8,28 +8,32 @@ package perfbench
 import (
 	"testing"
 
-	events1 "github.com/aclements/go-perfevent/events"
+	"github.com/aclements/go-perfevent/events"
 	"github.com/aclements/go-perfevent/perf"
 )
 
 // TODO: Support derived events that use event groups.
 
-var events = []events1.Event{
-	events1.EventCPUCycles,
-	events1.EventInstructions,
-	events1.EventCacheMisses,
-	events1.EventCacheReferences,
+// TODO: The difference between the benchmark timer starting automatically and
+// these counters not is annoying. Start them automatically so in the basic case
+// you can just defer Open().Close(), and provide a Reset method.
+
+var defaultEvents = []events.Event{
+	events.EventCPUCycles,
+	events.EventInstructions,
+	events.EventCacheMisses,
+	events.EventCacheReferences,
 }
 
 type Counters struct {
 	b *testing.B
 
-	events   []events1.Event
+	events   []events.Event
 	counters []*perf.Counter
 }
 
 func Open(b *testing.B) *Counters {
-	cs := Counters{b: b, events: events, counters: make([]*perf.Counter, len(events))}
+	cs := Counters{b: b, events: defaultEvents, counters: make([]*perf.Counter, len(defaultEvents))}
 
 	for i, event := range cs.events {
 		var err error
@@ -63,9 +67,9 @@ func (cs *Counters) Close() {
 	for i, c := range cs.counters {
 		val, err := c.ReadOne()
 		if err != nil {
-			cs.b.Logf("error reading %s: %v", events[i], err)
+			cs.b.Logf("error reading %s: %v", defaultEvents[i], err)
 		} else if val.TimeRunning > 0 {
-			cs.b.ReportMetric(float64(val.Value())/float64(cs.b.N), events[i].String()+"/op")
+			cs.b.ReportMetric(float64(val.Value())/float64(cs.b.N), defaultEvents[i].String()+"/op")
 		}
 		c.Close()
 	}
