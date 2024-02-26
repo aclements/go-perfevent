@@ -7,10 +7,14 @@
 package perf
 
 import (
+	"bytes"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"os"
 	"runtime"
+	"strconv"
+	"syscall"
 	"unsafe"
 
 	"golang.org/x/sys/unix"
@@ -92,8 +96,15 @@ func OpenCounter(target Target, events ...events.Event) (*Counter, error) {
 
 	fd, err := unix.PerfEventOpen(&attr, pid, cpu, -1, unix.PERF_FLAG_FD_CLOEXEC)
 	if err != nil {
-		// TODO: Provide a more helpful error if
-		// /proc/sys/kernel/perf_event_paranoid needs to be set.
+		if errors.Is(err, syscall.EACCES) {
+			const path = "/proc/sys/kernel/perf_event_paranoid"
+			data, err2 := os.ReadFile(path)
+			data = bytes.TrimSpace(data)
+			if val, err3 := strconv.Atoi(string(data)); err2 != nil || err3 != nil || val > 0 {
+				// We can't read it, or it's set to > 0.
+				err = fmt.Errorf("%w (consider: echo 0 | sudo tee %s)", err, path)
+			}
+		}
 		return nil, err
 	}
 	c.f = append(c.f, os.NewFile(uintptr(fd), "<perf-event>"))
