@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// perfbench is a utility for counting performance events in a Go benchmark.
 package perfbench
 
 import (
@@ -23,9 +22,7 @@ var defaultEvents = []events.Event{
 	events.EventCacheReferences,
 }
 
-// Counters is a set of performance counters that will be reported in benchmark
-// results.
-type Counters struct {
+type countersOS struct {
 	b  testingB
 	bN int
 
@@ -50,31 +47,20 @@ type testingB interface {
 	Cleanup(func())
 }
 
-// Open starts a set of performance counters for benchmark b. These counters
-// will be reported as metrics when the benchmark ends. The counters only count
-// performance events on the calling goroutine.
-//
-// The counters are running on return. In general, any calls to b.StopTimer,
-// b.StartTimer, or b.ResetTimer should be paired with the equivalent calls on
-// Counters.
-//
-// The final value of the counters is captured in a b.Cleanup function. If the
-// benchmark does substantial other work in cleanup functions, it may want to
-// explicitly call [Counters.Stop] before returning.
-func Open(b *testing.B) *Counters {
+func openOS(b *testing.B) *Counters {
 	printUnits()
 	return open(b, b.N)
 }
 
 func open(b testingB, bN int) *Counters {
 	events := defaultEvents
-	cs := Counters{
+	cs := &Counters{countersOS{
 		b:        b,
 		bN:       bN,
 		events:   events,
 		counters: make([]*perf.Counter, len(events)),
 		baseline: make([]perf.Count, len(events)),
-	}
+	}}
 
 	for i, event := range cs.events {
 		var err error
@@ -89,22 +75,22 @@ func open(b testingB, bN int) *Counters {
 	// Start all of the counters.
 	cs.Start()
 
-	return &cs
+	return cs
 }
 
-func (cs *Counters) Start() {
+func (cs *Counters) startOS() {
 	for _, c := range cs.counters {
 		c.Start()
 	}
 }
 
-func (cs *Counters) Stop() {
+func (cs *Counters) stopOS() {
 	for _, c := range cs.counters {
 		c.Stop()
 	}
 }
 
-func (cs *Counters) Reset() {
+func (cs *Counters) resetOS() {
 	// perf has a concept of resetting a counter, but it doesn't reset the
 	// counter's timers, so instead we track our own baseline.
 	for i, c := range cs.counters {
