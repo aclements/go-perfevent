@@ -47,6 +47,8 @@ type testingB interface {
 	Cleanup(func())
 }
 
+var openErrors sync.Map
+
 func openOS(b *testing.B) *Counters {
 	printUnits()
 	return open(b, b.N)
@@ -66,7 +68,11 @@ func open(b testingB, bN int) *Counters {
 		var err error
 		cs.counters[i], err = perf.OpenCounter(perf.TargetThisGoroutine, event)
 		if err != nil {
-			b.Logf("error opening counter %s: %v", event, err)
+			// Only report each error once, to avoid flooding benchmark log.
+			msg := fmt.Sprintf("error opening counter %s: %v", event, err)
+			if _, prev := openErrors.Swap(msg, true); !prev {
+				b.Logf("%s", msg)
+			}
 		}
 	}
 
