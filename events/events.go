@@ -19,6 +19,9 @@ type Event interface {
 	SetAttrs(*unix.PerfEventAttr) error
 }
 
+// TODO: Support parsing output of "perf list -j" and constructing event
+// attributes from /sys/bus/event_source/devices/
+
 type eventBasic struct {
 	name   string
 	typ    uint32

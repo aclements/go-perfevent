@@ -35,7 +35,7 @@ var printUnits = sync.OnceFunc(func() {
 	// Print unit metadata.
 	for _, event := range defaultEvents {
 		// Currently all events are better=lower.
-		fmt.Printf("Unit %s better=lower\n", event.String())
+		fmt.Printf("Unit %s/op better=lower\n", event.String())
 	}
 	fmt.Printf("\n")
 })
