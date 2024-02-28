@@ -59,13 +59,15 @@ func TestBasic(t *testing.T) {
 	}
 }
 
+var loopIters = 1000
+
 // measureLoop returns the instructions/op of a range loop to 1000. This is used
 // for several tests below.
 func measureLoop(t *testing.T) float64 {
 	p95 := p95Of(100, func() float64 {
 		tb := &testB{t: t}
 		open(tb, 1)
-		for range 1000 {
+		for i := 0; i < loopIters; i++ {
 		}
 		tb.cleanup()
 		// The instructions counter should be pretty stable.
@@ -80,7 +82,7 @@ func measureLoop(t *testing.T) float64 {
 
 func p95Of(iters int, f func() float64) float64 {
 	dist := make([]float64, iters)
-	for i := range iters {
+	for i := range dist {
 		dist[i] = f()
 	}
 	slices.Sort(dist)
@@ -97,10 +99,10 @@ func TestStop(t *testing.T) {
 	p95 := p95Of(100, func() float64 {
 		tb := &testB{t: t}
 		cs := open(tb, 1)
-		for range 1000 {
+		for i := 0; i < loopIters; i++ {
 		}
 		cs.Stop()
-		for range 100 * 1000 {
+		for i := 0; i < 100*loopIters; i++ {
 		}
 		tb.cleanup()
 		return tb.metrics["instructions/op"]
@@ -115,7 +117,7 @@ func TestResetStopped(t *testing.T) {
 	cs := open(tb, 1)
 	cs.Stop()
 	cs.Reset()
-	for range 1000 {
+	for i := 0; i < loopIters; i++ {
 	}
 	tb.cleanup()
 
@@ -130,10 +132,10 @@ func TestResetRunning(t *testing.T) {
 	p95 := p95Of(100, func() float64 {
 		tb := &testB{t: t}
 		cs := open(tb, 1)
-		for range 100 * 1000 {
+		for i := 0; i < 100*loopIters; i++ {
 		}
 		cs.Reset()
-		for range 1000 {
+		for i := 0; i < loopIters; i++ {
 		}
 		cs.Stop()
 		tb.cleanup()
