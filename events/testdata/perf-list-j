@@ -1,0 +1,2627 @@
+[
+{
+	"EventName": "branch-instructions",
+	"EventAlias": "branches",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "branch-misses",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "bus-cycles",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "cache-misses",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "cache-references",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "cpu-cycles",
+	"EventAlias": "cycles",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "instructions",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "ref-cycles",
+	"EventType": "Hardware event"
+},
+{
+	"EventName": "alignment-faults",
+	"EventType": "Software event"
+},
+{
+	"EventName": "bpf-output",
+	"EventType": "Software event"
+},
+{
+	"EventName": "cgroup-switches",
+	"EventType": "Software event"
+},
+{
+	"EventName": "context-switches",
+	"EventAlias": "cs",
+	"EventType": "Software event"
+},
+{
+	"EventName": "cpu-clock",
+	"EventType": "Software event"
+},
+{
+	"EventName": "cpu-migrations",
+	"EventAlias": "migrations",
+	"EventType": "Software event"
+},
+{
+	"EventName": "dummy",
+	"EventType": "Software event"
+},
+{
+	"EventName": "emulation-faults",
+	"EventType": "Software event"
+},
+{
+	"EventName": "major-faults",
+	"EventType": "Software event"
+},
+{
+	"EventName": "minor-faults",
+	"EventType": "Software event"
+},
+{
+	"EventName": "page-faults",
+	"EventAlias": "faults",
+	"EventType": "Software event"
+},
+{
+	"EventName": "task-clock",
+	"EventType": "Software event"
+},
+{
+	"Unit": "tool",
+	"EventName": "duration_time",
+	"EventType": "Tool event"
+},
+{
+	"Unit": "tool",
+	"EventName": "user_time",
+	"EventType": "Tool event"
+},
+{
+	"Unit": "tool",
+	"EventName": "system_time",
+	"EventType": "Tool event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "L1-dcache-loads",
+	"EventAlias": "cpu/L1-dcache-loads/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "L1-dcache-load-misses",
+	"EventAlias": "cpu/L1-dcache-load-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "L1-dcache-stores",
+	"EventAlias": "cpu/L1-dcache-stores/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "L1-icache-load-misses",
+	"EventAlias": "cpu/L1-icache-load-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "LLC-loads",
+	"EventAlias": "cpu/LLC-loads/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "LLC-load-misses",
+	"EventAlias": "cpu/LLC-load-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "LLC-stores",
+	"EventAlias": "cpu/LLC-stores/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "LLC-store-misses",
+	"EventAlias": "cpu/LLC-store-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "dTLB-loads",
+	"EventAlias": "cpu/dTLB-loads/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "dTLB-load-misses",
+	"EventAlias": "cpu/dTLB-load-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "dTLB-stores",
+	"EventAlias": "cpu/dTLB-stores/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "dTLB-store-misses",
+	"EventAlias": "cpu/dTLB-store-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "iTLB-load-misses",
+	"EventAlias": "cpu/iTLB-load-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "branch-loads",
+	"EventAlias": "cpu/branch-loads/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "branch-load-misses",
+	"EventAlias": "cpu/branch-load-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "node-loads",
+	"EventAlias": "cpu/node-loads/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "node-load-misses",
+	"EventAlias": "cpu/node-load-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "node-stores",
+	"EventAlias": "cpu/node-stores/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cache",
+	"Topic": "cpu",
+	"EventName": "node-store-misses",
+	"EventAlias": "cpu/node-store-misses/",
+	"EventType": "Hardware cache event"
+},
+{
+	"Unit": "cpu",
+	"EventName": "branch-instructions",
+	"EventAlias": "cpu/branch-instructions/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "branch-misses",
+	"EventAlias": "cpu/branch-misses/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "bus-cycles",
+	"EventAlias": "cpu/bus-cycles/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3c,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "cache-misses",
+	"EventAlias": "cpu/cache-misses/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x2e,umask=0x41/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "cache-references",
+	"EventAlias": "cpu/cache-references/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x2e,umask=0x4f/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "cpu-cycles",
+	"EventAlias": "cpu/cpu-cycles/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3c/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "instructions",
+	"EventAlias": "cpu/instructions/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc0/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "mem-loads",
+	"EventAlias": "cpu/mem-loads/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,umask=0x1,ldlat=0x3/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "mem-stores",
+	"EventAlias": "cpu/mem-stores/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,umask=0x82/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "ref-cycles",
+	"EventAlias": "cpu/ref-cycles/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,umask=0x3/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "slots",
+	"EventAlias": "cpu/slots/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "topdown-bad-spec",
+	"EventAlias": "cpu/topdown-bad-spec/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,umask=0x81/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "topdown-be-bound",
+	"EventAlias": "cpu/topdown-be-bound/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,umask=0x83/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "topdown-fe-bound",
+	"EventAlias": "cpu/topdown-fe-bound/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,umask=0x82/"
+},
+{
+	"Unit": "cpu",
+	"EventName": "topdown-retiring",
+	"EventAlias": "cpu/topdown-retiring/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,umask=0x80/"
+},
+{
+	"Unit": "cstate_core",
+	"EventName": "cstate_core/c6-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_core/event=0x2/"
+},
+{
+	"Unit": "cstate_core",
+	"EventName": "cstate_core/c7-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_core/event=0x3/"
+},
+{
+	"Unit": "cstate_pkg",
+	"EventName": "cstate_pkg/c10-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_pkg/event=0x6/"
+},
+{
+	"Unit": "cstate_pkg",
+	"EventName": "cstate_pkg/c2-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_pkg/event=0/"
+},
+{
+	"Unit": "cstate_pkg",
+	"EventName": "cstate_pkg/c3-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_pkg/event=0x1/"
+},
+{
+	"Unit": "cstate_pkg",
+	"EventName": "cstate_pkg/c6-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_pkg/event=0x2/"
+},
+{
+	"Unit": "cstate_pkg",
+	"EventName": "cstate_pkg/c7-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_pkg/event=0x3/"
+},
+{
+	"Unit": "cstate_pkg",
+	"EventName": "cstate_pkg/c8-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_pkg/event=0x4/"
+},
+{
+	"Unit": "cstate_pkg",
+	"EventName": "cstate_pkg/c9-residency/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cstate_pkg/event=0x5/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/actual-frequency/",
+	"ScaleUnit": "1M",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x100000/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/bcs0-busy/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x1000/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/bcs0-sema/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x1002/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/bcs0-wait/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x1001/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/interrupts/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x100002/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/rc6-residency/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x100003/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/rcs0-busy/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/rcs0-sema/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x2/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/rcs0-wait/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x1/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/requested-frequency/",
+	"ScaleUnit": "1M",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x100001/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/software-gt-awake-time/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x100004/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vcs0-busy/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x2000/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vcs0-sema/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x2002/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vcs0-wait/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x2001/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vcs1-busy/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x2010/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vcs1-sema/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x2012/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vcs1-wait/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x2011/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vecs0-busy/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x3000/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vecs0-sema/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x3002/"
+},
+{
+	"Unit": "i915",
+	"EventName": "i915/vecs0-wait/",
+	"ScaleUnit": "1ns",
+	"EventType": "Kernel PMU event",
+	"Encoding": "i915/config=0x3001/"
+},
+{
+	"Unit": "intel_bts",
+	"EventName": "intel_bts//",
+	"EventType": "Kernel PMU event"
+},
+{
+	"Unit": "intel_pt",
+	"EventName": "intel_pt//",
+	"EventType": "Kernel PMU event"
+},
+{
+	"Unit": "msr",
+	"EventName": "msr/aperf/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "msr/event=0x1/"
+},
+{
+	"Unit": "msr",
+	"EventName": "msr/cpu_thermal_margin/",
+	"ScaleUnit": "1C",
+	"EventType": "Kernel PMU event",
+	"Encoding": "msr/event=0x7/"
+},
+{
+	"Unit": "msr",
+	"EventName": "msr/mperf/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "msr/event=0x2/"
+},
+{
+	"Unit": "msr",
+	"EventName": "msr/pperf/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "msr/event=0x3/"
+},
+{
+	"Unit": "msr",
+	"EventName": "msr/smi/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "msr/event=0x4/"
+},
+{
+	"Unit": "msr",
+	"EventName": "msr/tsc/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "msr/event=0/"
+},
+{
+	"Unit": "power",
+	"EventName": "power/energy-cores/",
+	"ScaleUnit": "2.32831E-10Joules",
+	"EventType": "Kernel PMU event",
+	"Encoding": "power/event=0x1/"
+},
+{
+	"Unit": "power",
+	"EventName": "power/energy-gpu/",
+	"ScaleUnit": "2.32831E-10Joules",
+	"EventType": "Kernel PMU event",
+	"Encoding": "power/event=0x4/"
+},
+{
+	"Unit": "power",
+	"EventName": "power/energy-pkg/",
+	"ScaleUnit": "2.32831E-10Joules",
+	"EventType": "Kernel PMU event",
+	"Encoding": "power/event=0x2/"
+},
+{
+	"Unit": "power",
+	"EventName": "power/energy-psys/",
+	"ScaleUnit": "2.32831E-10Joules",
+	"EventType": "Kernel PMU event",
+	"Encoding": "power/event=0x5/"
+},
+{
+	"Unit": "uncore_clock",
+	"EventName": "uncore_clock/clockticks/",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_clock/event=0xff/"
+},
+{
+	"Unit": "uncore_imc_free_running_0",
+	"EventName": "uncore_imc_free_running_0/data_read/",
+	"ScaleUnit": "6.10352E-05MiB",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_0/event=0xff,umask=0x20/"
+},
+{
+	"Unit": "uncore_imc_free_running_0",
+	"EventName": "uncore_imc_free_running_0/data_total/",
+	"ScaleUnit": "6.10352E-05MiB",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_0/event=0xff,umask=0x10/"
+},
+{
+	"Unit": "uncore_imc_free_running_0",
+	"EventName": "uncore_imc_free_running_0/data_write/",
+	"ScaleUnit": "6.10352E-05MiB",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_0/event=0xff,umask=0x30/"
+},
+{
+	"Unit": "uncore_imc_free_running_1",
+	"EventName": "uncore_imc_free_running_1/data_read/",
+	"ScaleUnit": "6.10352E-05MiB",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_1/event=0xff,umask=0x20/"
+},
+{
+	"Unit": "uncore_imc_free_running_1",
+	"EventName": "uncore_imc_free_running_1/data_total/",
+	"ScaleUnit": "6.10352E-05MiB",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_1/event=0xff,umask=0x10/"
+},
+{
+	"Unit": "uncore_imc_free_running_1",
+	"EventName": "uncore_imc_free_running_1/data_write/",
+	"ScaleUnit": "6.10352E-05MiB",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_1/event=0xff,umask=0x30/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l1d.replacement",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x51,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l1d_pend_miss.fb_full",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x48,period=0xf4243,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l1d_pend_miss.fb_full_periods",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x48,cmask=0x1,edge=0x1,period=0xf4243,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l1d_pend_miss.l2_stall",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x48,period=0xf4243,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l1d_pend_miss.pending",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x48,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l1d_pend_miss.pending_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x48,cmask=0x1,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_lines_in.all",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xf1,period=0x186a3,umask=0x1f/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_lines_out.non_silent",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xf2,period=0x30d43,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_lines_out.silent",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xf2,period=0x30d43,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.all_code_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xe4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.all_demand_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xe1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.all_rfo",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xe2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.code_rd_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xc4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.code_rd_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0x24/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.demand_data_rd_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xc1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.demand_data_rd_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0x21/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0x3f/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.references",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xff/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.rfo_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xc2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.rfo_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0x22/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.swpf_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0xc8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_rqsts.swpf_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x24,period=0x30d43,umask=0x28/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "l2_trans.l2_wb",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xf0,period=0x30d43,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "lock_cycles.cache_lock_duration",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x63,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "longest_lat_cache.miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x2e,period=0x186a3,umask=0x41/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.all_loads",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0xf4243,umask=0x81/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.all_stores",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0xf4243,umask=0x82/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0xf4243,umask=0x83/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.lock_loads",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0x186a7,umask=0x21/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.split_loads",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0x186a3,umask=0x41/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.split_stores",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0x186a3,umask=0x42/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.stlb_miss_loads",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0x186a3,umask=0x11/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_inst_retired.stlb_miss_stores",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd0,period=0x186a3,umask=0x12/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_l3_hit_retired.xsnp_fwd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd2,period=0x4e2b,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_l3_hit_retired.xsnp_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd2,period=0x4e2b,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_l3_hit_retired.xsnp_no_fwd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd2,period=0x4e2b,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_l3_hit_retired.xsnp_none",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd2,period=0x186a3,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_misc_retired.uc",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd4,period=0x186a7,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_retired.fb_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd1,period=0x186a7,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_retired.l1_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd1,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_retired.l1_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd1,period=0x30d43,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_retired.l2_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd1,period=0x30d43,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_retired.l2_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd1,period=0x186b5,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_retired.l3_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd1,period=0x186b5,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "mem_load_retired.l3_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd1,period=0xc365,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "ocr.demand_data_rd.l3_hit.snoop_hit_with_fwd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb7,period=0x186a3,umask=0x1,offcore_rsp=0x3c0001/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "ocr.demand_data_rd.l3_hit.snoop_hitm",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb7,period=0x186a3,umask=0x1,offcore_rsp=0x3c0001/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "ocr.demand_rfo.l3_hit.snoop_hitm",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb7,period=0x186a3,umask=0x1,offcore_rsp=0x3c0002/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests.all_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb0,period=0x186a3,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests.all_requests",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb0,period=0x186a3,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests.demand_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb0,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests.demand_rfo",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb0,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests_outstanding.all_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x60,period=0xf4243,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests_outstanding.cycles_with_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x60,cmask=0x1,period=0xf4243,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests_outstanding.cycles_with_demand_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x60,cmask=0x1,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests_outstanding.cycles_with_demand_rfo",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x60,cmask=0x1,period=0xf4243,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests_outstanding.demand_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x60,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests_outstanding.demand_data_rd_ge_6",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x60,cmask=0x6,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "offcore_requests_outstanding.demand_rfo",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x60,period=0xf4243,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "sq_misc.bus_lock",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xf4,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "sq_misc.sq_full",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xf4,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "sw_prefetch_access.nta",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x32,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "sw_prefetch_access.prefetchw",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x32,period=0x186a3,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "sw_prefetch_access.t0",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x32,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "cache",
+	"EventName": "sw_prefetch_access.t1_t2",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x32,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "assists.fp",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc1,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.128b_packed_double",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.128b_packed_single",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.256b_packed_double",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.256b_packed_single",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.4_flops",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x18/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.512b_packed_double",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.512b_packed_single",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.8_flops",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x60/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.scalar",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0xf4243,umask=0x3/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.scalar_double",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.scalar_single",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "floating point",
+	"EventName": "fp_arith_inst_retired.vector",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc7,period=0xf4243,umask=0xfc/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "baclears.any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xe6,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "decode.lcp",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x87,period=0x7a129,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "dsb2mite_switches.count",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xab,cmask=0x1,edge=0x1,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "dsb2mite_switches.penalty_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xab,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.any_dsb_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.dsb_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x11/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.itlb_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x14/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.l1i_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x12/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.l2_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x13/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_1",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x500106/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_128",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x508006/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_16",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x501006/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_2",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x500206/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_256",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x510006/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_2_bubbles_ge_1",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x100206/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_32",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x502006/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_4",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x500406/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_512",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x520006/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_64",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x504006/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.latency_ge_8",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x500806/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "frontend_retired.stlb_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc6,period=0x186a7,umask=0x1,frontend=0x15/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "icache_16b.ifdata_stall",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x80,period=0x7a129,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "icache_64b.iftag_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x83,period=0x30d43,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "icache_64b.iftag_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x83,period=0x30d43,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "icache_64b.iftag_stall",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x83,period=0x30d43,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "icache_data.stalls",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x80,period=0x7a129,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "icache_tag.stalls",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x83,period=0x30d43,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.dsb_cycles_any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,cmask=0x1,period=0x1e8483,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.dsb_cycles_ok",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,cmask=0x5,period=0x1e8483,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.dsb_uops",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,period=0x1e8483,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.mite_cycles_any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,cmask=0x1,period=0x1e8483,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.mite_cycles_ok",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,cmask=0x5,period=0x1e8483,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.mite_uops",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,period=0x1e8483,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.ms_cycles_any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,cmask=0x1,period=0x1e8483,umask=0x30/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.ms_switches",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,cmask=0x1,edge=0x1,period=0x186a3,umask=0x30/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq.ms_uops",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x79,period=0x186a3,umask=0x30/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq_uops_not_delivered.core",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x9c,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq_uops_not_delivered.cycles_0_uops_deliv.core",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x9c,cmask=0x5,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "frontend",
+	"EventName": "idq_uops_not_delivered.cycles_fe_was_ok",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x9c,cmask=0x1,inv=0x1,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "cycle_activity.stalls_l3_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0x6,period=0xf4243,umask=0x6/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "machine_clears.memory_ordering",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc3,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_128",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0x3f1,umask=0x1,ldlat=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_16",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0x4e2b,umask=0x1,ldlat=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_256",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0x1f7,umask=0x1,ldlat=0x100/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_32",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0x186a7,umask=0x1,ldlat=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_4",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0x186a3,umask=0x1,ldlat=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_512",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0x65,umask=0x1,ldlat=0x200/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_64",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0x7d3,umask=0x1,ldlat=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "mem_trans_retired.load_latency_gt_8",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcd,period=0xc365,umask=0x1,ldlat=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "offcore_requests.l3_miss_demand_data_rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb0,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "rtm_retired.aborted",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc9,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "rtm_retired.aborted_events",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc9,period=0x186a3,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "rtm_retired.aborted_mem",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc9,period=0x186a3,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "rtm_retired.aborted_memtype",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc9,period=0x186a3,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "rtm_retired.aborted_unfriendly",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc9,period=0x186a3,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "rtm_retired.commit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc9,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "rtm_retired.start",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc9,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "tx_exec.misc2",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x5d,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "tx_exec.misc3",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x5d,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "tx_mem.abort_capacity_read",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x54,period=0x186a3,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "tx_mem.abort_capacity_write",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x54,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "memory",
+	"EventName": "tx_mem.abort_conflict",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x54,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "other",
+	"EventName": "core_power.lvl0_turbo_license",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x28,period=0x30d43,umask=0x7/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "other",
+	"EventName": "core_power.lvl1_turbo_license",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x28,period=0x30d43,umask=0x18/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "other",
+	"EventName": "core_power.lvl2_turbo_license",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x28,period=0x30d43,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "other",
+	"EventName": "ocr.streaming_wr.any_response",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb7,period=0x186a3,umask=0x1,offcore_rsp=0x10800/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "arith.divider_active",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x14,cmask=0x1,period=0xf4243,umask=0x9/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "assists.any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc1,period=0x186a3,umask=0x7/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.all_branches",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x61a89/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.cond",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x61a89,umask=0x11/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.cond_ntaken",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x61a89,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.cond_taken",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x61a89,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.far_branch",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x186a7,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.indirect",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x186a3,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.near_call",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x186a7,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.near_return",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x186a7,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_inst_retired.near_taken",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc4,period=0x61a89,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.all_branches",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.cond",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365,umask=0x11/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.cond_ntaken",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.cond_taken",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.indirect",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.indirect_call",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.near_taken",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "br_misp_retired.ret",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc5,period=0xc365,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cpu_clk_unhalted.distributed",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xec,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cpu_clk_unhalted.one_thread_active",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3c,period=0x61ab,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cpu_clk_unhalted.ref_distributed",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3c,period=0x1e8483,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cpu_clk_unhalted.ref_tsc",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,period=0x1e8483,umask=0x3/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cpu_clk_unhalted.ref_xclk",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3c,period=0x61ab,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cpu_clk_unhalted.thread",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3c,period=0x1e8483/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cpu_clk_unhalted.thread_p",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3c,period=0x1e8483/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cycle_activity.cycles_l1d_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0x8,period=0xf4243,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cycle_activity.cycles_l2_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0x1,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cycle_activity.cycles_mem_any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0x10,period=0xf4243,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cycle_activity.stalls_l1d_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0xc,period=0xf4243,umask=0xc/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cycle_activity.stalls_l2_miss",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0x5,period=0xf4243,umask=0x5/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cycle_activity.stalls_mem_any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0x14,period=0xf4243,umask=0x14/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "cycle_activity.stalls_total",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa3,cmask=0x4,period=0xf4243,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "exe_activity.1_ports_util",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa6,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "exe_activity.2_ports_util",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa6,period=0x1e8483,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "exe_activity.3_ports_util",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa6,period=0x1e8483,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "exe_activity.4_ports_util",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa6,period=0x1e8483,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "exe_activity.bound_on_loads",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa6,cmask=0x5,period=0x1e8483,umask=0x21/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "exe_activity.bound_on_stores",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa6,cmask=0x2,period=0xf4243,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "exe_activity.exe_bound_0_ports",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa6,period=0xf4243,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "ild_stall.lcp",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x87,period=0x7a129,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "inst_decoded.decoders",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x55,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "inst_retired.any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc0,period=0x1e8483/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "inst_retired.any_p",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc0,period=0x1e8483/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "inst_retired.nop",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc0,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "inst_retired.prec_dist",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "int_misc.all_recovery_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd,cmask=0x1,period=0x1e8483,umask=0x3/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "int_misc.clear_resteer_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd,period=0x7a129,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "int_misc.clears_count",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd,cmask=0x1,edge=0x1,period=0x7a129,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "int_misc.recovery_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd,period=0x7a129,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "int_misc.uop_dropping",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xd,period=0xf4243,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "ld_blocks.no_sr",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3,period=0x186a3,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "ld_blocks.store_forward",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x3,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "ld_blocks_partial.address_alias",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x7,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "load_hit_prefetch.swpf",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x4c,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "lsd.cycles_active",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa8,cmask=0x1,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "lsd.cycles_ok",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa8,cmask=0x5,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "lsd.uops",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa8,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "machine_clears.count",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc3,cmask=0x1,edge=0x1,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "machine_clears.smc",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc3,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "misc_retired.lbr_inserts",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcc,period=0x186a3,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "misc_retired.pause_inst",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xcc,period=0x186a3,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "resource_stalls.sb",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa2,period=0x186a3,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "resource_stalls.scoreboard",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa2,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "rs_events.empty_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x5e,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "rs_events.empty_end",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x5e,cmask=0x1,edge=0x1,inv=0x1,period=0x186a3,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "topdown.backend_bound_slots",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa4,period=0x989683,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "topdown.br_mispredict_slots",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa4,period=0x989683,umask=0x8/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "topdown.slots",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0,period=0x989683,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "topdown.slots_p",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa4,period=0x989683,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_decoded.dec0",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x56,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_dispatched.port_0",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa1,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_dispatched.port_1",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa1,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_dispatched.port_2_3",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa1,period=0x1e8483,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_dispatched.port_4_9",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa1,period=0x1e8483,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_dispatched.port_5",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa1,period=0x1e8483,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_dispatched.port_6",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa1,period=0x1e8483,umask=0x40/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_dispatched.port_7_8",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xa1,period=0x1e8483,umask=0x80/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.core",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.core_cycles_ge_1",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x1,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.core_cycles_ge_2",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x2,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.core_cycles_ge_3",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x3,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.core_cycles_ge_4",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x4,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.cycles_ge_1",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x1,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.cycles_ge_2",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x2,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.cycles_ge_3",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x3,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.cycles_ge_4",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x4,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.stall_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,cmask=0x1,inv=0x1,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.thread",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_executed.x87",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xb1,period=0x1e8483,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_issued.any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xe,period=0x1e8483,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_issued.stall_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xe,cmask=0x1,inv=0x1,period=0xf4243,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_issued.vector_width_mismatch",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xe,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_retired.slots",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc2,period=0x1e8483,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_retired.stall_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc2,cmask=0x1,inv=0x1,period=0xf4243,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "pipeline",
+	"EventName": "uops_retired.total_cycles",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xc2,cmask=0xa,inv=0x1,period=0xf4243,umask=0x2/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_coh_trk_requests.all",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x84,umask=0x1/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_dat_occupancy.all",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x85,umask=0x1/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_dat_occupancy.rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x85,umask=0x2/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_dat_requests.rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x81,umask=0x2/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_ifa_occupancy.all",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x85,umask=0x1/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_req_trk_occupancy.drd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x80,umask=0x2/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_req_trk_request.drd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x81,umask=0x2/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_trk_occupancy.all",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x80,umask=0x1/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_trk_occupancy.rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x80,umask=0x2/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_trk_requests.all",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x81,umask=0x1/"
+},
+{
+	"Unit": "uncore_arb",
+	"Topic": "uncore interconnect",
+	"EventName": "unc_arb_trk_requests.rd",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_arb/event=0x81,umask=0x2/"
+},
+{
+	"Unit": "uncore_imc_free_running_0",
+	"Topic": "uncore memory",
+	"EventName": "unc_mc0_rdcas_count_freerun",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_0/event=0xff,umask=0x20/"
+},
+{
+	"Unit": "uncore_imc_free_running_0",
+	"Topic": "uncore memory",
+	"EventName": "unc_mc0_total_reqcount_freerun",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_0/event=0xff,umask=0x10/"
+},
+{
+	"Unit": "uncore_imc_free_running_0",
+	"Topic": "uncore memory",
+	"EventName": "unc_mc0_wrcas_count_freerun",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_0/event=0xff,umask=0x30/"
+},
+{
+	"Unit": "uncore_imc_free_running_1",
+	"Topic": "uncore memory",
+	"EventName": "unc_mc1_rdcas_count_freerun",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_1/event=0xff,umask=0x20/"
+},
+{
+	"Unit": "uncore_imc_free_running_1",
+	"Topic": "uncore memory",
+	"EventName": "unc_mc1_total_reqcount_freerun",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_1/event=0xff,umask=0x10/"
+},
+{
+	"Unit": "uncore_imc_free_running_1",
+	"Topic": "uncore memory",
+	"EventName": "unc_mc1_wrcas_count_freerun",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_imc_free_running_1/event=0xff,umask=0x30/"
+},
+{
+	"Unit": "uncore_clock",
+	"Topic": "uncore other",
+	"EventName": "unc_clock.socket",
+	"EventType": "Kernel PMU event",
+	"Encoding": "uncore_clock/event=0xff/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_load_misses.stlb_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x8,period=0x186a3,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_load_misses.walk_active",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x8,cmask=0x1,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_load_misses.walk_completed",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x8,period=0x186a3,umask=0xe/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_load_misses.walk_completed_2m_4m",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x8,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_load_misses.walk_completed_4k",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x8,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_load_misses.walk_pending",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x8,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_store_misses.stlb_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x49,period=0x186a3,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_store_misses.walk_active",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x49,cmask=0x1,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_store_misses.walk_completed",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x49,period=0x186a3,umask=0xe/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_store_misses.walk_completed_2m_4m",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x49,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_store_misses.walk_completed_4k",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x49,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "dtlb_store_misses.walk_pending",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x49,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "itlb_misses.stlb_hit",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x85,period=0x186a3,umask=0x20/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "itlb_misses.walk_active",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x85,cmask=0x1,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "itlb_misses.walk_completed",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x85,period=0x186a3,umask=0xe/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "itlb_misses.walk_completed_2m_4m",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x85,period=0x186a3,umask=0x4/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "itlb_misses.walk_completed_4k",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x85,period=0x186a3,umask=0x2/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "itlb_misses.walk_pending",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0x85,period=0x186a3,umask=0x10/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "tlb_flush.dtlb_thread",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xbd,period=0x186a7,umask=0x1/"
+},
+{
+	"Unit": "cpu",
+	"Topic": "virtual memory",
+	"EventName": "tlb_flush.stlb_any",
+	"EventType": "Kernel PMU event",
+	"Encoding": "cpu/event=0xbd,period=0x186a7,umask=0x20/"
+},
+{
+	"EventName": "rNNN",
+	"EventType": "Raw hardware event descriptor"
+},
+{
+	"EventName": "cpu/t1=v1[,t2=v2,t3 ...]/modifier",
+	"EventType": "Raw hardware event descriptor"
+},
+{
+	"EventName": "mem:<addr>[/len][:access]",
+	"EventType": "Hardware breakpoint"
+}Error: failed to open tracing events directory
+,
+{
+	"MetricGroup": "Backend",
+	"MetricName": "tma_core_bound",
+	"MetricExpr": "max(0, tma_backend_bound - tma_memory_bound)",
+	"MetricThreshold": "tma_core_bound > 0.1 & tma_backend_bound > 0.2",
+	"ScaleUnit": "100%"
+},
+{
+	"MetricGroup": "Backend",
+	"MetricName": "tma_info_core_ilp",
+	"MetricExpr": "UOPS_EXECUTED.THREAD / (UOPS_EXECUTED.CORE_CYCLES_GE_1 / 2 if #SMT_on else UOPS_EXECUTED.CORE_CYCLES_GE_1)"
+}
+]
