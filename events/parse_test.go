@@ -218,30 +218,42 @@ func TestParse(t *testing.T) {
 	// Perf prefers the built-in event even if there's one in /sys
 	test("cpu/cpu-cycles/", hw(unix.PERF_COUNT_HW_CPU_CYCLES))
 	test("cpu-cycles", hw(unix.PERF_COUNT_HW_CPU_CYCLES))
+
 	// Test an event from /sys
 	test("cpu/mem-stores/", raw(0xd0|0x82<<8))
 	// Any CPU event can omit the PMU, even if it's not built-in
 	test("mem-stores", raw(0xd0|0x82<<8))
-	// Test parameters
+
+	// Test pure parameter events.
 	test("cpu/event=0xd0/", raw(0xd0))
 	test("cpu/event=42/", raw(42))
 	test("cpu/event=042/", raw(0o42))
 	test("cpu/event=0xd0,config1=0xd1,config2=0xd2/", raw(0xd0).c1(0xd1).c2(0xd2))
 	test("cpu/config=0xd0,config1=0xd1,config2=0xd2/", raw(0xd0).c1(0xd1).c2(0xd2))
+
 	// Test mixing parameters and names.
 	test("cpu/mem-stores,umask=42/", raw(0xd0|42<<8))
 	test("cpu/umask=42,mem-stores/", raw(0xd0|42<<8))
+
 	// Test a single bit field.
 	test("cpu/edge=1/", raw(1<<18))
 	test("cpu/edge/", raw(1<<18))
+
 	// Test mixing single bit fields with event names.
 	test("cpu/mem-stores,edge/", raw(0xd0|0x82<<8|1<<18))
 	test("cpu/edge,mem-stores/", raw(0xd0|0x82<<8|1<<18))
+
 	// Test mixing an event that's both built-in and in /sys with a /sys
 	// parameter. Perf will generate a nonsense event for this with type
 	// HARDWARE that mixes the fixed config enum with bits from /sys. We'll
 	// instead find the event in /sys and use that.
 	test("cpu/cpu-cycles,edge/", raw(0x3c|1<<18))
+
+	// Test a format with multiple bit fields.
+	test("fake/splitevent=0x1/", raw(1<<0))
+	test("fake/splitevent=0x2/", raw(1<<2))
+	test("fake/splitevent=0x4/", raw(1<<3))
+	test("fake/splitevent=0x8/", raw(1<<5))
 
 	// Test perf list -j events.
 	test("l1d.replacement", raw(0x51|0x1<<8).p(0x186a3)) // cpu/event=0x51,period=0x186a3,umask=0x1/
@@ -255,6 +267,7 @@ func TestParse(t *testing.T) {
 	// Test parameter out of range
 	testErr("cpu/event=0x1ff/", `event "cpu/event=0x1ff/": parameter event=511 not in range 0-255`)
 	testErr("cpu/edge=2/", `event "cpu/edge=2/": parameter edge=2 not in range 0-1`)
+	testErr("fake/splitevent=0x10/", `event "fake/splitevent=0x10/": parameter splitevent=16 not in range 0-15`)
 	// Test unknown parameter
 	testErr("cpu/bad=25/", `event "cpu/bad=25/": unknown event or parameter "bad"`)
 	// Test multiple events
@@ -270,8 +283,6 @@ func TestParse(t *testing.T) {
 	testErr("cpu/event=abc/", `event "cpu/event=abc/": error parsing event param list "event=abc": parameter "event=abc" not a number`)
 	testErr("cpu/one,two/", `event "cpu/one,two/": unknown event or parameter "one"`)
 	testErr("cpu/=1/", `event "cpu/=1/": error parsing event param list "=1": missing parameter name in "=1"`)
-
-	// TODO: Test formats with multiple bit ranges.
 }
 
 func TestParsePerfList(t *testing.T) {

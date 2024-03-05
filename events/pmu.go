@@ -13,7 +13,6 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strconv"
 	"strings"
 )
@@ -42,9 +41,15 @@ type pmuDesc struct {
 type pmuFormat struct {
 	name  string
 	field func(*rawEvent) *uint64
+	bits  []formatBitRange
+}
+
+type formatBitRange struct {
 	shift int
 	nBits int
 }
+
+var formatAllBits = []formatBitRange{{0, 64}}
 
 type pmuEvent struct {
 	name   string
@@ -65,13 +70,13 @@ func (d *pmuDesc) getFormat(param string) (pmuFormat, bool) {
 	// TODO: Perf also supports config3,name,percore,metric-id
 	switch param {
 	case "config":
-		return pmuFormat{param, fieldConfig, 0, 64}, true
+		return pmuFormat{param, fieldConfig, formatAllBits}, true
 	case "config1":
-		return pmuFormat{param, fieldConfig1, 0, 64}, true
+		return pmuFormat{param, fieldConfig1, formatAllBits}, true
 	case "config2":
-		return pmuFormat{param, fieldConfig2, 0, 64}, true
+		return pmuFormat{param, fieldConfig2, formatAllBits}, true
 	case "period":
-		return pmuFormat{param, fieldPeriod, 0, 64}, true
+		return pmuFormat{param, fieldPeriod, formatAllBits}, true
 	}
 	f, ok := d.format[param]
 	return f, ok
@@ -80,12 +85,20 @@ func (d *pmuDesc) getFormat(param string) (pmuFormat, bool) {
 // set sets the appropriate field of e to val.
 func (f pmuFormat) set(e *rawEvent, val uint64) error {
 	field := f.field(e)
-	max := ((uint64(1) << f.nBits) - 1)
-	if val>>f.nBits != 0 {
+	totalBits := 0
+	x := val
+	for _, bits := range f.bits {
+		totalBits += bits.nBits
+		max := (uint64(1) << bits.nBits) - 1
+		*field &^= max << bits.shift
+		*field |= (x & max) << bits.shift
+		x >>= bits.nBits
+	}
+	if x != 0 {
+		// We didn't consume all the bits, so the value is of range.
+		max := (uint64(1) << totalBits) - 1
 		return fmt.Errorf("parameter %s=%d not in range 0-%d", f.name, val, max)
 	}
-	*field &^= max << f.shift
-	*field |= val << f.shift
 	return nil
 }
 
@@ -193,33 +206,43 @@ func pmuForEachFile(path string, f func(name string, data string) error) error {
 	return nil
 }
 
-var formatRe = regexp.MustCompile(`^(config[12]?):([0-9]+)(?:-([0-9]+))?\n?$`)
-
 // pmuParseFormat parses the content of a format description from
 // /sys/bus/event_source/devices/*/format/*.
 func pmuParseFormat(s string) (pmuFormat, error) {
-	parts := formatRe.FindStringSubmatch(s)
-	if parts == nil {
+	// See https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-event_source-devices-format
+	// Perf assumes the bit ranges will always be in order,
+	// but that doesn't seem right.
+	s = strings.TrimRight(s, "\n")
+	field, ranges, ok := strings.Cut(s, ":")
+	if !ok {
 		return pmuFormat{}, fmt.Errorf("error parsing format %q", s)
 	}
 	var format pmuFormat
-	switch string(parts[1]) {
+	switch string(field) {
 	case "config":
 		format.field = fieldConfig
 	case "config1":
 		format.field = fieldConfig1
 	case "config2":
 		format.field = fieldConfig2
+	default:
+		return pmuFormat{}, fmt.Errorf("error parsing format %q: unknown field %s", s, field)
 	}
-	// TODO: Apparently this allows multiple ranges. See
-	// https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-event_source-devices-format
-	// Perf assumes the fields will always be in order.
-	format.shift, _ = strconv.Atoi(string(parts[2]))
-	if len(parts[3]) == 0 {
-		format.nBits = 1
-	} else {
-		hi, _ := strconv.Atoi(string(parts[3]))
-		format.nBits = hi - format.shift + 1
+	for _, r := range strings.Split(ranges, ",") {
+		lo, hi, ok := strings.Cut(r, "-")
+		shift, err := strconv.Atoi(lo)
+		nBits := 1
+		if ok {
+			hiVal, err2 := strconv.Atoi(hi)
+			if err == nil {
+				err = err2
+			}
+			nBits = hiVal - shift + 1
+		}
+		if err != nil {
+			return pmuFormat{}, fmt.Errorf("error parsing format %q: %w", s, err)
+		}
+		format.bits = append(format.bits, formatBitRange{shift, nBits})
 	}
 	return format, nil
 }
