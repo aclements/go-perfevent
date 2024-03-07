@@ -17,12 +17,22 @@ import (
 	"strings"
 )
 
-func resolvePMUEvent(pmu *pmuDesc, eventName string) (pmuEvent, error) {
-	ev, ok := pmu.events[eventName]
+func resolvePMUEvent(pmu *pmuDesc, eventName string, ev *rawEvent) error {
+	pmuEv, ok := pmu.events[eventName]
 	if !ok {
-		return ev, errUnknownEvent
+		return errUnknownEvent
 	}
-	return ev, nil
+	// TODO: Do something with scale and unit.
+	for _, param := range pmuEv.params {
+		f, ok := pmu.getFormat(param.k)
+		if !ok {
+			return fmt.Errorf("unknown parameter %q in %s description", param.k, eventName)
+		}
+		if err := f.set(ev, param.v); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 // The directory and fs.FS of the event source devices. These are variables so

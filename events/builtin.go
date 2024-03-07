@@ -7,6 +7,7 @@
 package events
 
 import (
+	"fmt"
 	"sort"
 	"strings"
 	"sync"
@@ -17,6 +18,16 @@ import (
 type builtinEvent struct {
 	pmu    uint32
 	config uint64
+}
+
+func (e builtinEvent) String() string {
+	return fmt.Sprintf("pmu%d/config=%#x/", e.pmu, e.config)
+}
+
+func (e builtinEvent) SetAttrs(attr *unix.PerfEventAttr) error {
+	attr.Type = e.pmu
+	attr.Config = e.config
+	return nil
 }
 
 type cacheEventName struct {

@@ -51,11 +51,7 @@ func ParseEvent(name string) (Event, error) {
 		return nil, err
 	}
 
-	rev, err := resolveEvent(name, pmu, params)
-	if err != nil {
-		return nil, err
-	}
-	return rev, nil
+	return resolveEvent(name, pmu, params)
 }
 
 var errNotPMUEvent = errors.New("not a PMU format event")
@@ -113,7 +109,7 @@ func parseParamList(list string) ([]eventParam, error) {
 	return params, nil
 }
 
-type eventResolver func(pmu *pmuDesc, eventName string) (pmuEvent, error)
+type eventResolver func(pmu *pmuDesc, eventName string, out *rawEvent) error
 
 // errUnknownEvent is an internal error returned by eventResolver.
 var errUnknownEvent = errors.New("unknown event")
@@ -125,13 +121,8 @@ var eventResolvers = []eventResolver{
 
 // resolveEvent resolves an event in the form pmu/param1=N,.../ or a symbolic
 // event. Symbolic events will have pmu == "" and a single kOnly param.
-func resolveEvent(enc string, pmu string, params []eventParam) (*rawEvent, error) {
+func resolveEvent(enc string, pmu string, params []eventParam) (Event, error) {
 	event := rawEvent{name: enc}
-
-	// TODO: Could I simplify all of this by having the concept of "a thing that
-	// can set fields in a rawEvent"? Then hopefully I wouldn't need
-	// builtinEvent, or pmuEvent, and maybe perfJson.toPMUEvent could be more
-	// direct.
 
 	// Events with perf constants are baked in and don't necessarily appear in
 	// /sys. (Though sometimes they do!) Perf will prefer this over the
@@ -141,9 +132,7 @@ func resolveEvent(enc string, pmu string, params []eventParam) (*rawEvent, error
 	// this inevitably produces malformed events.
 	if len(params) == 1 && params[0].kOnly {
 		if ev, ok := resolveBuiltinEvent(pmu, params[0].k); ok {
-			event.pmu = ev.pmu
-			event.config = ev.config
-			return &event, nil
+			return ev, nil
 		}
 	}
 
@@ -161,7 +150,6 @@ func resolveEvent(enc string, pmu string, params []eventParam) (*rawEvent, error
 	event.pmu = desc.pmu
 
 	// Resolve each parameter to either an event name or a PMU format.
-	var pmuEv pmuEvent
 	eventNameIndex := -1
 Params:
 	for i, param := range params {
@@ -171,17 +159,21 @@ Params:
 		}
 		if param.kOnly {
 			for _, r := range eventResolvers {
-				pmuEv2, err := r(desc, param.k)
+				// The parameters from the named event are overridden by other
+				// parameters, regardless of order, so it's okay to have the
+				// resolver fill in the rawEvent directly.
+				//
+				err := r(desc, param.k, &event)
 				if err == nil {
 					// Resolved event name
 					if eventNameIndex != -1 {
-						return nil, fmt.Errorf("event %q: multiple events %q and %q", enc, pmuEv.name, pmuEv2.name)
+						return nil, fmt.Errorf("event %q: multiple events %q and %q", enc, params[eventNameIndex].k, param.k)
 					}
-					pmuEv, eventNameIndex = pmuEv2, i
+					eventNameIndex = i
 					continue Params
 				} else if err != errUnknownEvent {
 					// A "real" error.
-					return nil, err
+					return nil, fmt.Errorf("event %q: %w", enc, err)
 				}
 			}
 		}
@@ -192,21 +184,13 @@ Params:
 		return nil, fmt.Errorf("event %q: unknown event or parameter %q", enc, param.k)
 	}
 
-	if eventNameIndex != -1 {
-		// The parameters from the named event are overridden by other
-		// parameters, regardless of order.
-		params = append(append(append([]eventParam(nil), pmuEv.params...), params[:eventNameIndex]...), params[eventNameIndex+1:]...)
-		// TODO: Do something with pmuEv.scale and unit.
-	}
-
 	// Finally, resolve the parameters into an event.
-	for _, param := range params {
-		f, ok := desc.getFormat(param.k)
-		if !ok {
-			// This can happen if the event itself introduces unknown
-			// parameters.
-			return nil, fmt.Errorf("event %q: unknown parameter %q in description", enc, param.k)
+	for i, param := range params {
+		if i == eventNameIndex {
+			// Already resolved above.
+			continue
 		}
+		f, _ := desc.getFormat(param.k)
 		if err := f.set(&event, param.v); err != nil {
 			return nil, fmt.Errorf("event %q: %w", enc, err)
 		}

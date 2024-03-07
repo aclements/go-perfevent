@@ -36,6 +36,36 @@ func init() {
 	}
 }
 
+func evString(ev Event) string {
+	if ev == nil {
+		return "<nil>"
+	}
+
+	var attrs unix.PerfEventAttr
+	if err := ev.SetAttrs(&attrs); err != nil {
+		return fmt.Sprintf("(error %s)", err)
+	}
+
+	if attrs.Type == ^uint32(0) {
+		// We use this in tests to indicate an invalid event.
+		return "<invalid>"
+	}
+
+	var s strings.Builder
+	fmt.Fprintf(&s, "pmu%d/config=%#x", attrs.Type, attrs.Config)
+	if attrs.Ext1 != 0 {
+		fmt.Fprintf(&s, ",config1=%#x", attrs.Ext1)
+	}
+	if attrs.Ext2 != 0 {
+		fmt.Fprintf(&s, ",config2=%#x", attrs.Ext2)
+	}
+	if attrs.Sample != 0 {
+		fmt.Fprintf(&s, ",period=%#x", attrs.Sample)
+	}
+	s.WriteByte('/')
+	return s.String()
+}
+
 func TestParseBuiltin(t *testing.T) {
 	for _, tc := range getBuiltinTests() {
 		// Test via parseBuiltinEvent
@@ -45,7 +75,7 @@ func TestParseBuiltin(t *testing.T) {
 		}
 		wantBE := builtinEvent{tc.pmu, tc.config}
 		if wantBE != gotBE {
-			t.Errorf("PMU %q, event %q: got %s, want %s", tc.pmuName, tc.eventName, gotBE, wantBE)
+			t.Errorf("PMU %q, event %q: got %s, want %s", tc.pmuName, tc.eventName, evString(gotBE), evString(wantBE))
 			// If this is messed up, skip ParseEvent.
 			continue
 		}
@@ -58,15 +88,13 @@ func TestParseBuiltin(t *testing.T) {
 			eventName = tc.eventName
 		}
 		gotEv, err := ParseEvent(eventName)
-		var gotRE *rawEvent
 		if err != nil {
-			gotRE = &rawEvent{name: eventName, pmu: ^uint32(0)}
+			gotBE = builtinEvent{pmu: ^uint32(0)}
 		} else {
-			gotRE = gotEv.(*rawEvent)
+			gotBE = gotEv.(builtinEvent)
 		}
-		wantRE := rawEvent{name: eventName, pmu: tc.pmu, config: tc.config}
-		if wantRE != *gotRE {
-			t.Errorf("%s: got %s (err %s), want %s", eventName, gotRE.detail(), err, wantRE.detail())
+		if wantBE != gotBE {
+			t.Errorf("%s: got %s (err %s), want %s", eventName, evString(gotBE), err, evString(wantBE))
 		}
 	}
 }
@@ -141,33 +169,6 @@ func getBuiltinTests() []builtinTest {
 	return tests
 }
 
-func (ev builtinEvent) String() string {
-	if ev.pmu == ^uint32(0) {
-		return "<invalid>"
-	}
-	return fmt.Sprintf("{%#x, %#x}", ev.pmu, ev.config)
-}
-
-func (ev *rawEvent) detail() string {
-	if ev.pmu == ^uint32(0) {
-		return "<invalid>"
-	}
-
-	var s strings.Builder
-	fmt.Fprintf(&s, "pmu%d/config=%#x", ev.pmu, ev.config)
-	if ev.config1 != 0 {
-		fmt.Fprintf(&s, ",config1=%#x", ev.config1)
-	}
-	if ev.config2 != 0 {
-		fmt.Fprintf(&s, ",config2=%#x", ev.config2)
-	}
-	if ev.period != 0 {
-		fmt.Fprintf(&s, ",period=%#x", ev.period)
-	}
-	s.WriteByte('/')
-	return s.String()
-}
-
 func (ev *rawEvent) c1(val uint64) *rawEvent {
 	ev.config1 = val
 	return ev
@@ -186,20 +187,21 @@ func TestParse(t *testing.T) {
 		t.Helper()
 		got, err := ParseEvent(name)
 		if err != nil {
-			t.Errorf("%s: want %s, got error %s", name, want.detail(), err)
+			t.Errorf("%s: want %s, got error %s", name, evString(want), err)
 			return
 		}
-		gotRE := got.(*rawEvent)
-		want.name = name
-		if *want != *gotRE {
-			t.Errorf("%s: want %s, got %s", name, want.detail(), gotRE.detail())
+		var wantAttrs, gotAttrs unix.PerfEventAttr
+		want.SetAttrs(&wantAttrs)
+		got.SetAttrs(&gotAttrs)
+		if wantAttrs != gotAttrs {
+			t.Errorf("%s: want %s, got %s", name, evString(want), evString(got))
 		}
 	}
 	testErr := func(name string, want string) {
 		t.Helper()
 		got, err := ParseEvent(name)
 		if err == nil {
-			t.Errorf("%s: want error %s, got %s", name, want, got.(*rawEvent).detail())
+			t.Errorf("%s: want error %s, got event %s", name, want, evString(got))
 			return
 		}
 		if err.Error() != want {
@@ -310,6 +312,10 @@ func testParsePerfList(t *testing.T, data, errOut []byte, err error) {
 		}
 		t.Fatalf("failed to parse perf list -j JSON: %s", err)
 	}
+	cpu, err := pmus.get("cpu")
+	if err != nil {
+		t.Fatalf("failed to get cpu PMU: %s", err)
+	}
 	for _, pj := range m {
 		if pj.Encoding == "" {
 			// Most of these events are actually built-in, and for those that
@@ -320,7 +326,8 @@ func testParsePerfList(t *testing.T, data, errOut []byte, err error) {
 			// We only look for perf list events under the CPU PMU.
 			continue
 		}
-		_, err := pj.toPMUEvent()
+		var raw rawEvent
+		err := pj.toRawEvent(cpu, &raw)
 		if err != nil {
 			t.Errorf("failed to parse perf list -j event %#v:\n%s", pj, err)
 		}

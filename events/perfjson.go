@@ -16,6 +16,8 @@ import (
 	"regexp"
 	"strings"
 	"sync"
+
+	"golang.org/x/sys/unix"
 )
 
 // TODO: It might just be better to use the perfmon database. See
@@ -27,21 +29,21 @@ import (
 // implementation that translates from the JSON definitions directly to
 // perf_event_attrs.
 
-func resolvePerfJsonEvent(pmu *pmuDesc, eventName string) (pmuEvent, error) {
+func resolvePerfJsonEvent(pmu *pmuDesc, eventName string, ev *rawEvent) error {
+	if pmu.pmu != unix.PERF_TYPE_RAW {
+		return errUnknownEvent
+	}
+
 	list, err := getPerfList()
 	if err != nil {
-		return pmuEvent{}, err
+		return err
 	}
 	evJSON, ok := list[eventName]
 	if !ok {
-		return pmuEvent{}, errUnknownEvent
+		return errUnknownEvent
 	}
 
-	// Got the event. Make sure we can actually use it.
-	if evJSON.Encoding == "" {
-		return pmuEvent{}, fmt.Errorf("unsupported event %q: no encoding from perf list -j", eventName)
-	}
-	return evJSON.toPMUEvent()
+	return evJSON.toRawEvent(pmu, ev)
 }
 
 type perfJson struct {
@@ -115,26 +117,42 @@ func parsePerfList(data, errOut []byte, err error) (map[string]perfJson, error) 
 	return m, nil
 }
 
-// toPMUEvent converts j into a pmuEvent.
-func (j perfJson) toPMUEvent() (pmuEvent, error) {
-	pmu, params, err := parsePMUEvent(j.Encoding)
-	if err == nil && pmu != "cpu" {
+func (evJSON *perfJson) toRawEvent(pmu *pmuDesc, ev *rawEvent) error {
+	// Got the event. Make sure we can actually use it.
+	if evJSON.Encoding == "" {
+		return fmt.Errorf("unsupported event %q: no encoding from perf list -j", evJSON.EventName)
+	}
+
+	// Parse the string fields in the JSON.
+	pmuName, params, err := parsePMUEvent(evJSON.Encoding)
+	if err == nil && pmuName != "cpu" {
 		err = fmt.Errorf("expected PMU %q", "cpu")
 	}
 	if err != nil {
-		return pmuEvent{}, fmt.Errorf("unexpected encoding %q from perf list -j: %w", j.Encoding, err)
+		return fmt.Errorf("unexpected encoding %q from perf list -j: %w", evJSON.Encoding, err)
 	}
 	scale := 1.0
 	unit := ""
-	if j.ScaleUnit != "" {
-		n, err := fmt.Sscanf(j.ScaleUnit, "%g%s", &scale, &unit)
+	if evJSON.ScaleUnit != "" {
+		n, err := fmt.Sscanf(evJSON.ScaleUnit, "%g%s", &scale, &unit)
 		if n == 1 && err == io.EOF {
 			// This just means the unit was empty. That's fine.
 			err = nil
 		}
 		if err != nil {
-			return pmuEvent{}, fmt.Errorf("unexpected ScaleUnit %q from perf list -j: %w", j.ScaleUnit, err)
+			return fmt.Errorf("unexpected ScaleUnit %q from perf list -j: %w", evJSON.ScaleUnit, err)
 		}
 	}
-	return pmuEvent{j.EventName, params, scale, unit}, nil
+
+	// Resolve and set the parameters.
+	for _, param := range params {
+		f, ok := pmu.getFormat(param.k)
+		if !ok {
+			return fmt.Errorf("unknown parameter %q in encoding %q from perf list -j", param.k, evJSON.Encoding)
+		}
+		if err := f.set(ev, param.v); err != nil {
+			return err
+		}
+	}
+	return nil
 }
