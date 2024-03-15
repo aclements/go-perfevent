@@ -27,7 +27,8 @@ import (
 // for the tool that converts the JSON into perf C definitions. Alternatively,
 // https://github.com/andikleen/pmu-tools/blob/master/jevents/jevents.c is a C
 // implementation that translates from the JSON definitions directly to
-// perf_event_attrs.
+// perf_event_attrs. Perhaps use perfmon if we have the database for the current
+// chip and otherwise fall back to perf.
 
 func resolvePerfJsonEvent(pmu *pmuDesc, eventName string, ev *rawEvent) error {
 	if pmu.pmu != unix.PERF_TYPE_RAW {
@@ -131,9 +132,9 @@ func (evJSON *perfJson) toRawEvent(pmu *pmuDesc, ev *rawEvent) error {
 	if err != nil {
 		return fmt.Errorf("unexpected encoding %q from perf list -j: %w", evJSON.Encoding, err)
 	}
-	scale := 1.0
-	unit := ""
 	if evJSON.ScaleUnit != "" {
+		scale := 1.0
+		unit := ""
 		n, err := fmt.Sscanf(evJSON.ScaleUnit, "%g%s", &scale, &unit)
 		if n == 1 && err == io.EOF {
 			// This just means the unit was empty. That's fine.
@@ -142,6 +143,8 @@ func (evJSON *perfJson) toRawEvent(pmu *pmuDesc, ev *rawEvent) error {
 		if err != nil {
 			return fmt.Errorf("unexpected ScaleUnit %q from perf list -j: %w", evJSON.ScaleUnit, err)
 		}
+		ev.scale = scale
+		ev.unit = unit
 	}
 
 	// Resolve and set the parameters.

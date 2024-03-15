@@ -181,6 +181,11 @@ func (ev *rawEvent) p(val uint64) *rawEvent {
 	ev.period = val
 	return ev
 }
+func (ev *rawEvent) setScale(scale float64, unit string) *rawEvent {
+	ev.scale = scale
+	ev.unit = unit
+	return ev
+}
 
 func TestParse(t *testing.T) {
 	test := func(name string, want *rawEvent) {
@@ -214,8 +219,6 @@ func TestParse(t *testing.T) {
 	raw := func(config uint64) *rawEvent {
 		return &rawEvent{pmu: unix.PERF_TYPE_RAW, config: config}
 	}
-
-	// TODO: Test events with scale and unit.
 
 	// Perf prefers the built-in event even if there's one in /sys
 	test("cpu/cpu-cycles/", hw(unix.PERF_COUNT_HW_CPU_CYCLES))
@@ -260,6 +263,12 @@ func TestParse(t *testing.T) {
 	// Test perf list -j events.
 	test("l1d.replacement", raw(0x51|0x1<<8).p(0x186a3)) // cpu/event=0x51,period=0x186a3,umask=0x1/
 	test("cpu/l1d.replacement/", raw(0x51|0x1<<8).p(0x186a3))
+
+	// Test scaled events from /sys.
+	test("fake/scaled/", raw(0).setScale(2.5e-10, "Joules"))
+	test("fake/united/", raw(0).setScale(1, "Joules"))
+	// Test scaled events from perf list -j.
+	test("fakescaled", raw(0).setScale(100, "%"))
 
 	// Test unknown event
 	testErr("bad", `unknown event "bad"`)

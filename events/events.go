@@ -19,6 +19,17 @@ type Event interface {
 	SetAttrs(*unix.PerfEventAttr) error
 }
 
+// An EventScale is an Event that provides a scaling factor and unit to convert
+// raw values into meaningful values.
+type EventScale interface {
+	Event
+
+	// ScaleUnit returns the factor to multiply raw values by to compute a
+	// meaningful value, plus the unit of that value. A no-op implementation
+	// should return 1.0, "".
+	ScaleUnit() (scale float64, unit string)
+}
+
 type eventBasic struct {
 	name   string
 	typ    uint32

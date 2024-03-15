@@ -2623,5 +2623,11 @@
 	"MetricGroup": "Backend",
 	"MetricName": "tma_info_core_ilp",
 	"MetricExpr": "UOPS_EXECUTED.THREAD / (UOPS_EXECUTED.CORE_CYCLES_GE_1 / 2 if #SMT_on else UOPS_EXECUTED.CORE_CYCLES_GE_1)"
+},
+{
+	"Unit": "cpu",
+	"EventName": "fakescaled",
+	"Encoding": "cpu/event=0/",
+	"ScaleUnit": "100%"
 }
 ]

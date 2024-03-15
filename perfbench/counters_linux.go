@@ -119,7 +119,11 @@ func (cs *Counters) close() {
 		if err != nil {
 			cs.b.Logf("error reading %s: %v", defaultEvents[i], err)
 		} else if val.TimeRunning > 0 {
-			cs.b.ReportMetric(float64(val.Value())/float64(cs.bN), defaultEvents[i].String()+"/op")
+			val, unit := val.Value()
+			if unit != "" {
+				unit = "-" + unit
+			}
+			cs.b.ReportMetric(val/float64(cs.bN), defaultEvents[i].String()+unit+"/op")
 		}
 		c.Close()
 	}

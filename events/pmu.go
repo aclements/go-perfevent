@@ -22,7 +22,6 @@ func resolvePMUEvent(pmu *pmuDesc, eventName string, ev *rawEvent) error {
 	if !ok {
 		return errUnknownEvent
 	}
-	// TODO: Do something with scale and unit.
 	for _, param := range pmuEv.params {
 		f, ok := pmu.getFormat(param.k)
 		if !ok {
@@ -32,6 +31,8 @@ func resolvePMUEvent(pmu *pmuDesc, eventName string, ev *rawEvent) error {
 			return err
 		}
 	}
+	ev.scale = pmuEv.scale
+	ev.unit = pmuEv.unit
 	return nil
 }
 
@@ -159,10 +160,9 @@ var pmus = newOnceMap(func(pmu string) (*pmuDesc, error) {
 			if err != nil {
 				return err
 			}
-			desc.events[name] = pmuEvent{name: name, params: params}
+			desc.events[name] = pmuEvent{name: name, params: params, scale: 1.0, unit: ""}
 
 		case strings.HasSuffix(name, ".scale"):
-			// TODO: Test scale and unit
 			name = strings.TrimSuffix(name, ".scale")
 			if ev, ok := desc.events[name]; ok {
 				s, err := strconv.ParseFloat(data, 64)

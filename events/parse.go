@@ -22,6 +22,9 @@ type rawEvent struct {
 	config1 uint64
 	config2 uint64
 	period  uint64
+
+	scale float64
+	unit  string
 }
 
 func (e *rawEvent) String() string {
@@ -35,6 +38,10 @@ func (e *rawEvent) SetAttrs(attr *unix.PerfEventAttr) error {
 	attr.Ext2 = e.config2
 	attr.Sample = e.period // Union of sample_period and sample_freq
 	return nil
+}
+
+func (e *rawEvent) ScaleUnit() (float64, string) {
+	return e.scale, e.unit
 }
 
 func ParseEvent(name string) (Event, error) {
@@ -122,7 +129,7 @@ var eventResolvers = []eventResolver{
 // resolveEvent resolves an event in the form pmu/param1=N,.../ or a symbolic
 // event. Symbolic events will have pmu == "" and a single kOnly param.
 func resolveEvent(enc string, pmu string, params []eventParam) (Event, error) {
-	event := rawEvent{name: enc}
+	event := rawEvent{name: enc, scale: 1.0, unit: ""}
 
 	// Events with perf constants are baked in and don't necessarily appear in
 	// /sys. (Though sometimes they do!) Perf will prefer this over the

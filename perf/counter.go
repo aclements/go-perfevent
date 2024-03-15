@@ -46,12 +46,19 @@ var (
 type Counter struct {
 	target Target
 
+	eventScales []scale
+
 	f []*os.File
 
 	running bool
 
 	nEvents int
 	readBuf []byte
+}
+
+type scale struct {
+	scale float64
+	unit  string
 }
 
 // OpenCounter returns a new [Counter] that reads values for the given
@@ -62,9 +69,19 @@ type Counter struct {
 // will all be scheduled onto the hardware at the same time.
 //
 // The counter is initially not running. Call [Counter.Start] to start it.
-func OpenCounter(target Target, events ...events.Event) (*Counter, error) {
-	if len(events) == 0 {
+func OpenCounter(target Target, evs ...events.Event) (*Counter, error) {
+	if len(evs) == 0 {
 		return nil, nil
+	}
+
+	// Get event scales.
+	eventScales := make([]scale, len(evs))
+	for i, event := range evs {
+		sc, unit := 1.0, ""
+		if es, ok := event.(events.EventScale); ok {
+			sc, unit = es.ScaleUnit()
+		}
+		eventScales[i] = scale{sc, unit}
 	}
 
 	pid, cpu := target.pidCPU()
@@ -72,7 +89,7 @@ func OpenCounter(target Target, events ...events.Event) (*Counter, error) {
 	// Open the group leader.
 	attr := unix.PerfEventAttr{}
 	attr.Size = uint32(unsafe.Sizeof(attr))
-	if err := events[0].SetAttrs(&attr); err != nil {
+	if err := evs[0].SetAttrs(&attr); err != nil {
 		return nil, err
 	}
 	attr.Read_format = unix.PERF_FORMAT_TOTAL_TIME_ENABLED |
@@ -84,7 +101,8 @@ func OpenCounter(target Target, events ...events.Event) (*Counter, error) {
 
 	var c Counter
 	c.target = target
-	c.nEvents = len(events)
+	c.eventScales = eventScales
+	c.nEvents = len(evs)
 
 	success := false
 	target.open()
@@ -117,7 +135,7 @@ func OpenCounter(target Target, events ...events.Event) (*Counter, error) {
 	}()
 
 	// Open other events.
-	for _, event := range events[1:] {
+	for _, event := range evs[1:] {
 		attr = unix.PerfEventAttr{}
 		attr.Size = uint32(unsafe.Sizeof(attr))
 		if err := event.SetAttrs(&attr); err != nil {
@@ -136,7 +154,7 @@ func OpenCounter(target Target, events ...events.Event) (*Counter, error) {
 	}
 
 	// Allocate a large enough read buffer.
-	c.readBuf = make([]byte, 3*8+len(events)*8)
+	c.readBuf = make([]byte, 3*8+len(evs)*8)
 
 	success = true
 	return &c, nil
@@ -185,20 +203,24 @@ type Count struct {
 
 	TimeEnabled uint64 // Total time the Counter was started.
 	TimeRunning uint64 // Total time the Counter was actually counting.
+
+	scale scale
 }
 
-// Value returns the value of Count, scaled to account for time the counter was
-// descheduled.
-func (c Count) Value() uint64 {
-	if c.TimeEnabled == c.TimeRunning {
-		// Common case: it was running the whole time.
-		return c.RawValue
+// Value returns the measured value of Count, scaled to account for time the
+// counter was scheduled, and to account for any conversion factors in the
+// underlying event.
+func (c Count) Value() (float64, string) {
+	raw := float64(c.RawValue)
+	if c.TimeEnabled == c.TimeRunning && c.scale.scale == 1.0 {
+		// Common case: it was running the whole time and there's no conversion factor.
+		return raw, c.scale.unit
 	}
 	if c.TimeRunning == 0 {
 		// Avoid divide by zero.
-		return 0
+		return 0, c.scale.unit
 	}
-	return uint64(float64(c.RawValue) * (float64(c.TimeEnabled) / float64(c.TimeRunning)))
+	return raw * (float64(c.TimeEnabled) / float64(c.TimeRunning)) * c.scale.scale, c.scale.unit
 }
 
 // ReadOne returns the current value of the first event in c. For counters that
@@ -243,6 +265,7 @@ func (c *Counter) ReadGroup(cs []Count) error {
 		cs[i].TimeEnabled = timeEnabled
 		cs[i].TimeRunning = timeRunning
 		cs[i].RawValue = binary.NativeEndian.Uint64(buf[24+i*8:])
+		cs[i].scale = c.eventScales[i]
 	}
 	return nil
 }
