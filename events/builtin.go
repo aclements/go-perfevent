@@ -16,12 +16,16 @@ import (
 )
 
 type builtinEvent struct {
+	name   string
 	pmu    uint32
 	config uint64
 }
 
 func (e builtinEvent) String() string {
-	return fmt.Sprintf("pmu%d/config=%#x/", e.pmu, e.config)
+	if e.name == "" {
+		return fmt.Sprintf("pmu%d/config=%#x/", e.pmu, e.config)
+	}
+	return e.name
 }
 
 func (e builtinEvent) SetAttrs(attr *unix.PerfEventAttr) error {
@@ -54,7 +58,7 @@ func resolveBuiltinEvent(pmu, eventName string) (builtinEvent, bool) {
 		// See parse-events.c:event_symbols_hw
 		builtinEvents.cpu = make(map[string]builtinEvent)
 		hw := func(config uint64, names ...string) {
-			ev := builtinEvent{unix.PERF_TYPE_HARDWARE, config}
+			ev := builtinEvent{"", unix.PERF_TYPE_HARDWARE, config}
 			for _, name := range names {
 				builtinEvents.cpu[name] = ev
 			}
@@ -73,7 +77,7 @@ func resolveBuiltinEvent(pmu, eventName string) (builtinEvent, bool) {
 		// See parse-events.c:event_symbols_sw
 		builtinEvents.software = make(map[string]builtinEvent)
 		sw := func(config uint64, names ...string) {
-			ev := builtinEvent{unix.PERF_TYPE_SOFTWARE, config}
+			ev := builtinEvent{"", unix.PERF_TYPE_SOFTWARE, config}
 			for _, name := range names {
 				builtinEvents.software[name] = ev
 			}
@@ -147,12 +151,14 @@ func resolveBuiltinEvent(pmu, eventName string) (builtinEvent, bool) {
 
 	// CPU events can be used with or without a PMU name.
 	if e, ok := builtinEvents.cpu[eventName]; ok {
+		e.name = eventName
 		return e, true
 	}
 
 	// Software events can only be used with no PMU name.
 	if pmu == "" {
 		if e, ok := builtinEvents.software[eventName]; ok {
+			e.name = eventName
 			return e, true
 		}
 	}
@@ -199,7 +205,7 @@ func resolveBuiltinEvent(pmu, eventName string) (builtinEvent, bool) {
 			// Parsed the whole event. Check if it's an allowed combination.
 			if builtinEvents.cacheAllowed[config]&(1<<op) != 0 {
 				config |= (op << 8) | (result << 16)
-				return builtinEvent{unix.PERF_TYPE_HW_CACHE, config}, true
+				return builtinEvent{eventName, unix.PERF_TYPE_HW_CACHE, config}, true
 			}
 		}
 	}

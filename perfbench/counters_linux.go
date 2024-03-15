@@ -20,6 +20,20 @@ var defaultEvents = []events.Event{
 	events.EventInstructions,
 	events.EventCacheMisses,
 	events.EventCacheReferences,
+	events.EventBranches,
+	getEvent("l1d-loads"),
+	getEvent("l1d-load-misses"),
+}
+
+func getEvent(name string) events.Event {
+	ev, err := events.ParseEvent(name)
+	if err != nil {
+		// The events we look up are currently all built-in, so parsing should
+		// never fail. If we change this in the future, this should synthesize
+		// an event that fails on SetAttr.
+		panic("failed to parse built-in event " + name)
+	}
+	return ev
 }
 
 type countersOS struct {

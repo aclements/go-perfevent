@@ -71,9 +71,9 @@ func TestParseBuiltin(t *testing.T) {
 		// Test via parseBuiltinEvent
 		gotBE, ok := resolveBuiltinEvent(tc.pmuName, tc.eventName)
 		if !ok {
-			gotBE = builtinEvent{^uint32(0), 0}
+			gotBE = builtinEvent{pmu: ^uint32(0)}
 		}
-		wantBE := builtinEvent{tc.pmu, tc.config}
+		wantBE := builtinEvent{gotBE.name, tc.pmu, tc.config}
 		if wantBE != gotBE {
 			t.Errorf("PMU %q, event %q: got %s, want %s", tc.pmuName, tc.eventName, evString(gotBE), evString(wantBE))
 			// If this is messed up, skip ParseEvent.
