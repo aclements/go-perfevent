@@ -39,3 +39,10 @@ func (cs *Counters) Stop() {
 func (cs *Counters) Reset() {
 	cs.resetOS()
 }
+
+// Total returns the total count of the named counter, which is a reported
+// metric name without the "/op". If the named counter is unknown or could not
+// be opened, this returns 0, false.
+func (cs *Counters) Total(name string) (float64, bool) {
+	return cs.totalOS(name)
+}

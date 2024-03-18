@@ -19,3 +19,5 @@ func (cs *Counters) startOS() {}
 func (cs *Counters) stopOS() {}
 
 func (cs *Counters) resetOS() {}
+
+func (cs *Counters) totalOS(_ string) (float64, bool) { return 0, false }

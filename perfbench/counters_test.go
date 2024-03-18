@@ -59,6 +59,23 @@ func TestBasic(t *testing.T) {
 	}
 }
 
+func TestTotal(t *testing.T) {
+	tb := &testB{t: t}
+	cs := open(tb, 2)
+	cs.Stop()
+	if _, ok := cs.Total("does-not-exist"); ok {
+		t.Errorf("got ok for does-not-exist")
+	}
+	got, gOK := cs.Total("cpu-cycles")
+	got /= 2
+	tb.cleanup()
+
+	want, wOK := tb.metrics["cpu-cycles/op"]
+	if gOK != wOK || (gOK && got != want) {
+		t.Fatalf("got %v, %v; want %v, %v", got, gOK, want, wOK)
+	}
+}
+
 var loopIters = 1000
 
 // measureLoop returns the instructions/op of a range loop to 1000. This is used
