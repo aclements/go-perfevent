@@ -27,6 +27,11 @@ type rawEvent struct {
 	unit  string
 }
 
+// *rawEvent implements Event
+var _ Event = &rawEvent{}
+
+func (e *rawEvent) isEvent() {}
+
 func (e *rawEvent) String() string {
 	return e.name
 }

@@ -21,6 +21,11 @@ type builtinEvent struct {
 	config uint64
 }
 
+// builtinEvent implements Event
+var _ Event = builtinEvent{}
+
+func (e builtinEvent) isEvent() {}
+
 func (e builtinEvent) String() string {
 	if e.name == "" {
 		return fmt.Sprintf("pmu%d/config=%#x/", e.pmu, e.config)
