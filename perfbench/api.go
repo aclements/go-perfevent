@@ -7,6 +7,10 @@ package perfbench
 
 import "testing"
 
+// TODO: Sometimes you want to use custom counters in benchmarks and get the
+// nice integration with testing.B, but not just automatically report them as
+// X/op. Something between the perf package and the current perfbench package.
+
 // Counters is a set of performance counters that will be reported in benchmark
 // results.
 type Counters struct {
