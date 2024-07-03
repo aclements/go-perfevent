@@ -141,7 +141,9 @@ func OpenCounter(target Target, evs ...events.Event) (*Counter, error) {
 		if err := event.SetAttrs(&attr); err != nil {
 			return nil, err
 		}
-		attr.Bits = unix.PerfBitDisabled
+		// Note that we do *not* set PerfBitDisabled, since child events run
+		// only when both the parent and the child are enabled, and we want all
+		// control to be on the parent.
 
 		fd2, err := unix.PerfEventOpen(&attr, pid, cpu, fd, unix.PERF_FLAG_FD_CLOEXEC)
 		if err != nil {
