@@ -14,6 +14,7 @@ import (
 	"os"
 	"runtime"
 	"strconv"
+	"sync/atomic"
 	"syscall"
 	"unsafe"
 
@@ -50,6 +51,8 @@ type Counter struct {
 
 	f []*os.File
 
+	mmap []*unix.PerfEventMmapPage
+
 	running bool
 
 	nEvents int
@@ -60,6 +63,13 @@ type scale struct {
 	scale float64
 	unit  string
 }
+
+const (
+	// Version of PerfEventMmapPage we understand.
+	perfEventMmapPageVersion = 0
+
+	capabilityRDPMC = 1 << 2
+)
 
 // OpenCounter returns a new [Counter] that reads values for the given
 // [events.Event] or group of Events on the given [Target]. Callers are
@@ -126,6 +136,14 @@ func OpenCounter(target Target, evs ...events.Event) (*Counter, error) {
 		return nil, err
 	}
 	c.f = append(c.f, os.NewFile(uintptr(fd), "<perf-event>"))
+
+	// We just need the initial metadata page.
+	ptr, err := unix.MmapPtr(fd, 0, nil, uintptr(unix.Getpagesize()), unix.PROT_READ, unix.MAP_SHARED)
+	if err != nil {
+		return nil, fmt.Errorf("error mapping perf event page: %v", err)
+	}
+	c.mmap = append(c.mmap, (*unix.PerfEventMmapPage)(ptr))
+
 	defer func() {
 		if !success {
 			for _, f := range c.f {
@@ -150,9 +168,13 @@ func OpenCounter(target Target, evs ...events.Event) (*Counter, error) {
 			return nil, err
 		}
 
-		// I'm honestly not sure what this FD is for, but we shouldn't close it,
-		// so we hold on to it.
 		c.f = append(c.f, os.NewFile(uintptr(fd2), "<perf-event>"))
+
+		ptr, err := unix.MmapPtr(fd2, 0, nil, uintptr(unix.Getpagesize()), unix.PROT_READ, unix.MAP_SHARED)
+		if err != nil {
+			return nil, fmt.Errorf("error mapping perf event page: %v", err)
+		}
+		c.mmap = append(c.mmap, (*unix.PerfEventMmapPage)(ptr))
 	}
 
 	// Allocate a large enough read buffer.
@@ -229,9 +251,14 @@ func (c Count) Value() (float64, string) {
 // only have a single Event, this is faster and more ergonomic than
 // [Counter.ReadGroup].
 func (c *Counter) ReadOne() (Count, error) {
-	// TODO: Use RDPMC when possible.
 	if c == nil {
 		return Count{}, nil
+	}
+
+	// Use RDPMC when possible.
+	cnt, ok := readPMC(c.mmap[0])
+	if ok {
+		return cnt, nil
 	}
 
 	var cs [1]Count
@@ -241,6 +268,52 @@ func (c *Counter) ReadOne() (Count, error) {
 	return cs[0], nil
 }
 
+// Returns false if reading from PMC is not currently available. Note that this
+// may change from one call to the next due to e.g., multiplexing.
+func readPMC(mmap *unix.PerfEventMmapPage) (c Count, ok bool) {
+	if runtime.GOARCH != "amd64" {
+		return c, false
+	}
+
+	if mmap.Compat_version > perfEventMmapPageVersion {
+		return c, false
+	}
+
+	// See Linux tools/lib/perf/mmap.c:perf_mmap__read_self for reference.
+	for {
+		// TODO(prattmic): This doesn't need to be atomic, but it does
+		// need a compiler barrier.
+		seq := atomic.LoadUint32(&mmap.Lock)
+
+		if mmap.Capabilities&capabilityRDPMC == 0 {
+			return c, false
+		}
+
+		idx := mmap.Index
+		if idx == 0 {
+			return c, false
+		}
+
+		c.TimeEnabled = mmap.Time_enabled
+		c.TimeRunning = mmap.Time_running
+
+		pmc := rdpmc(idx - 1)
+		// Sign extend.
+		// TODO(prattmic): perf_event_open(2) mentions this, but what
+		// events can be negative?
+		pmc <<= 64 - mmap.Pmc_width
+		pmc >>= 64 - mmap.Pmc_width
+
+		c.RawValue = uint64(pmc) + uint64(mmap.Offset)
+
+		if atomic.LoadUint32(&mmap.Lock) == seq {
+			break
+		}
+	}
+
+	return c, true
+}
+
 // ReadGroup returns the current value of all events in c.
 func (c *Counter) ReadGroup(cs []Count) error {
 	if c == nil {
@@ -248,6 +321,20 @@ func (c *Counter) ReadGroup(cs []Count) error {
 	}
 	if c.f == nil {
 		return fmt.Errorf("Counter is closed")
+	}
+
+	// Try to read all with RDPMC. If any fail, fall back to read.
+	success := true
+	for i := range cs {
+		var ok bool
+		cs[i], ok = readPMC(c.mmap[i])
+		if !ok {
+			success = false
+			break
+		}
+	}
+	if success {
+		return nil
 	}
 
 	buf := c.readBuf

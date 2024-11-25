@@ -112,3 +112,20 @@ func checkCount(t *testing.T, count Count, min Count) {
 		t.Fatal("TimeRunning decreased")
 	}
 }
+
+func BenchmarkReadOne(b *testing.B) {
+	c, err := OpenCounter(TargetThisGoroutine, events.EventCPUCycles)
+	if err != nil {
+		b.Fatal(err)
+	}
+	defer c.Close()
+
+	c.Start()
+
+	for range b.N {
+		_, err := c.ReadOne()
+		if err != nil {
+			b.Fatal(err)
+		}
+	}
+}
